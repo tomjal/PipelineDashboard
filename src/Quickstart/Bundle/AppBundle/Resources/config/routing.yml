@@ -14,9 +14,9 @@ quickstart_app_dashboard:
     path:     /dashboard
     defaults: { _controller: quickstart_app_dashboard_controller:indexAction }
 
-quickstart_app_github:
-    path:     /widget/github
-    defaults: { _controller: quickstart_app_github_controller:indexAction }
+quickstart_app_github_events:
+    path:     /widget/github/events
+    defaults: { _controller: quickstart_app_github_controller:eventsAction }
 
 quickstart_app_travis:
     path:     /widget/travis

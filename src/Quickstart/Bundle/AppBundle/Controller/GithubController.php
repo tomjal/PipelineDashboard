@@ -4,6 +4,7 @@ namespace Quickstart\Bundle\AppBundle\Controller;
 
 use Quickstart\Bundle\AppBundle\Service\Github;
 use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Class GithubController
@@ -31,8 +32,10 @@ class GithubController
     /**
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function eventsAction($reponame)
+    public function eventsAction(Request $request, $reponame = '')
     {
+        $reponame = $request->get('reponame', $reponame);
+
         return $this->templating->renderResponse(
             'QuickstartAppBundle:Github:events.html.twig',
             array(

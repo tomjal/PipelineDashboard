@@ -63,7 +63,7 @@
     <div class="row">
         <div class="col-md-6">
             {{ render(controller(
-            'quickstart_app_github_controller:eventsAction', { 'reponame': reponame }
+            'quickstart_app_dashboard_controller:widgetAction', { 'url': 'http://localhost:8001/en/widget/github/events?reponame=symfony/symfony' }
             )) }}
         </div>
 
