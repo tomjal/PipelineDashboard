@@ -16,7 +16,3 @@ _errors:
 
 _main:
     resource: routing.yml
-
-dashboardhub_development:
-    resource: "@DashboardHubDevelopmentBundle/Resources/config/routing.yml"
-    prefix:   /development

@@ -1,12 +1,12 @@
 # This file is a "template" of what your parameters.yml file should look like
+# Set parameters here that may be different on each deployment target of the app, e.g. development, staging, production.
+# http://symfony.com/doc/current/best_practices/configuration.html#infrastructure-related-configuration
 parameters:
-    database_driver:   pdo_mysql
-    database_host:     "%database.host%"
+    database_host:     127.0.0.1
     database_port:     ~
-    database_name:     "%database.name%"
-    database_user:     "%database.user%"
-    database_password: "%database.password%"
-
+    database_name:     symfony
+    database_user:     root
+    database_password: ~
     # You should uncomment this if you want use pdo_sqlite
     # database_path: "%kernel.root_dir%/data.db3"
 
@@ -15,26 +15,5 @@ parameters:
     mailer_user:       ~
     mailer_password:   ~
 
-    locale:            en
-
     # A secret key that's used to generate certain security-related tokens
     secret:            ThisTokenIsNotSoSecretChangeIt
-
-    # oauth
-    client_id:         "%client.id%"
-    client_secret:     "%client.secret%"
-
-    # github
-    github_api:
-        base_url: "https://api.github.com"
-        defaults:
-            headers:
-                Authorization: "token %github.api.token%"
-    travis_api:
-        base_url: "https://api.travis-ci.org"
-    scrutinizer_api:
-        base_url: "https://scrutinizer-ci.com"
-    beacon_api: "http://beacon.dashboardhub.io"
-    beacon_descriptions: "%kernel.root_dir%/../src/DashboardHub/Bundle/AppBundle/Resources/config/descriptions.json"
-    elasticsearch_host: "%elasticsearch.host%"
-    elasticsearch_port: "%elasticsearch.port%"

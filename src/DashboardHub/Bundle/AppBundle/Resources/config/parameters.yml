@@ -1,5 +1,0 @@
-parameters:
-    dashboard_hub_app.themes:
-        Github: DashboardHubAppBundle:Template:Github.html.twig
-        GithubTravis: DashboardHubAppBundle:Template:GithubTravis.html.twig
-        GithubTravisScrutinizer: DashboardHubAppBundle:Template:GithubTravisScrutinizer.html.twig
