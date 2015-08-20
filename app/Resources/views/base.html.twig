@@ -2,12 +2,129 @@
 <html>
     <head>
         <meta charset="UTF-8" />
-        <title>{% block title %}Welcome!{% endblock %}</title>
+        <title>Pipeline Dashboard:: {% block title %}DashboardHub{% endblock %}</title>
         {% block stylesheets %}{% endblock %}
-        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+        <link rel="icon" type="image/x-icon" href="http://cdn.dashboardhub.io/favicon.ico" />
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="{{ asset('bundles/dashboardhubpipelinedashboard/css/styles.css') }}">
     </head>
     <body>
+    <div class="container-fluid">
+        <!-- Static navbar -->
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                            data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="/">
+                        <img src="http://cdn.dashboardhub.io/logo-horizontal-std-109x20.png" alt="DashboardHub Logo" />
+                    </a>
+                </div>
+                <div id="navbar" class="navbar-collapse collapse">
+                    {{ knp_menu_render('main') }}
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="disabled" title="version">
+                            <a href="#">
+                                <span class="label label-warning version">Alpha</span>
+                            </a>
+                        </li>
+
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                               aria-expanded="false">
+                                <i class="fa fa-heartbeat"></i>
+                                Community <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li>
+                                    <a href="https://gitter.im/DashboardHub/PipelineDashboard">
+                                        <img src="https://badges.gitter.im/Join%20Chat.svg"/></a>
+                                </li>
+                                <li>
+                                    <a href="https://github.com/DashboardHub/PipelineDashboard">
+                                        <i class="fa fa-github"></i>
+                                        Github
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="https://twitter.com/dashboardhub">
+                                        <i class="fa fa-twitter"></i>
+                                        Twitter
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="http://dashboardhub.io/d/5505d755493564.48070216">
+                                        <i class="fa fa-play-circle-o"></i>
+                                        Demo
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="http://blog.dashboardhub.io">
+                                        <i class="fa fa-weixin"></i>
+                                        Blog
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="disabled" title="version">
+                            <a href="#" id="version">
+                                <i class="fa fa-comments"></i> {{ version.current }}
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <!--/.nav-collapse -->
+            </div>
+            <!--/.container-fluid -->
+        </nav>
+
+        {% for type, flashMessages in app.session.flashbag.all() %}
+            {% for flashMessage in flashMessages %}
+                <div class="alert alert-{{ type }}">
+                    {{ flashMessage }}
+                </div>
+            {% endfor %}
+        {% endfor %}
+
+        <div class="well">
         {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
+        </div>
+    </div>
+
+    <!-- footer -->
+    <div class="container-fluid text-center">
+        <ul class="list-inline">
+            <li><span class="label label-warning version">Alpha</span></li>
+            <li>
+                <a href="http://dashboardhub.io">
+                    DashboardHub
+                </a>
+            </li>
+            <li><a href="https://github.com/DashboardHub/PipelineDashboard">Github</a></li>
+            <li><a href="https://gitter.im/DashboardHub/PipelineDashboard">Gitter</a></li>
+            <li><a href="https://twitter.com/dashboardhub">Twitter</a></li>
+        </ul>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+    {% block javascripts %}{% endblock %}
+
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-60804146-1', 'auto');
+        ga('send', 'pageview');
+    </script>
     </body>
 </html>

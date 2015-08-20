@@ -1,0 +1,19 @@
+services:
+#    dashboard_hub_pipeline_dashboard.example:
+#        class: DashboardHub\Bundle\PipelineDashboardBundle\Example
+#        arguments: [@service_id, "plain_value", %parameter%]
+
+  dashboard_hub_pipeline_dashboard.menu_builder:
+          class: DashboardHub\Bundle\PipelineDashboardBundle\Menu\MenuBuilder
+          arguments: ["@knp_menu.factory","@security.context"]
+
+  dashboard_hub_pipeline_dashboard.main_menu:
+      class: Knp\Menu\MenuItem # the service definition requires setting the class
+      factory: ["@dashboard_hub_pipeline_dashboard.menu_builder", createMainMenu]
+      arguments: ["@request_stack"]
+      tags:
+          - { name: knp_menu.menu, alias: main } # The alias is what is used to retrieve the menu
+
+  dashboard_hub_pipeline_dashboard.service.version:
+      class: DashboardHub\Bundle\PipelineDashboardBundle\Service\VersionService
+      arguments: ["%kernel.root_dir%/../VERSION"]

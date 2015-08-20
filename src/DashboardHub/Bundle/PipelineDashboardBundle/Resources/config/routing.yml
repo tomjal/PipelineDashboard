@@ -1,0 +1,3 @@
+dashboard_hub_pipeline_dashboard_homepage:
+    path:     /hello
+    defaults: { _controller: DashboardHubPipelineDashboardBundle:Default:index }
