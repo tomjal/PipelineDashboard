@@ -48,6 +48,10 @@ public class Project implements Serializable {
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<Repo> repos = new HashSet<>();
 
+    @OneToOne
+    @JoinColumn
+    private User user;
+
     public Long getId() {
         return id;
     }
@@ -94,6 +98,14 @@ public class Project implements Serializable {
 
     public void setRepos(Set<Repo> repos) {
         this.repos = repos;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     @Override

@@ -34,10 +34,10 @@ import static org.elasticsearch.index.query.QueryBuilders.*;
 public class ProjectResource {
 
     private final Logger log = LoggerFactory.getLogger(ProjectResource.class);
-        
+
     @Inject
     private ProjectService projectService;
-    
+
     /**
      * POST  /projects : Create a new project.
      *
@@ -98,7 +98,7 @@ public class ProjectResource {
     public ResponseEntity<List<Project>> getAllProjects(Pageable pageable)
         throws URISyntaxException {
         log.debug("REST request to get a page of Projects");
-        Page<Project> page = projectService.findAll(pageable); 
+        Page<Project> page = projectService.findAllByCurrentUser(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/projects");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }

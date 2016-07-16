@@ -13,7 +13,7 @@ public interface ProjectService {
 
     /**
      * Save a project.
-     * 
+     *
      * @param project the entity to save
      * @return the persisted entity
      */
@@ -21,15 +21,23 @@ public interface ProjectService {
 
     /**
      *  Get all the projects.
-     *  
+     *
      *  @param pageable the pagination information
      *  @return the list of entities
      */
     Page<Project> findAll(Pageable pageable);
 
     /**
+     *  Get all projects by current User.
+     *
+     *  @param pageable the pagination information
+     *  @return the list of entities
+     */
+    Page<Project> findAllByCurrentUser(Pageable pageable);
+
+    /**
      *  Get the "id" project.
-     *  
+     *
      *  @param id the id of the entity
      *  @return the entity
      */
@@ -37,14 +45,14 @@ public interface ProjectService {
 
     /**
      *  Delete the "id" project.
-     *  
+     *
      *  @param id the id of the entity
      */
     void delete(Long id);
 
     /**
      * Search for the project corresponding to the query.
-     * 
+     *
      *  @param query the query of the search
      *  @return the list of entities
      */

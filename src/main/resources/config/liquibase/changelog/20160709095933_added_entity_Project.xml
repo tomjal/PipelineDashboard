@@ -24,22 +24,24 @@
             <column name="name" type="varchar(32)">
                 <constraints nullable="false" />
             </column>
-            
+
             <column name="description" type="varchar(512)">
                 <constraints nullable="true" />
             </column>
-            
+
             <column name="created_on" type="timestamp">
                 <constraints nullable="true" />
             </column>
-            
+
             <column name="is_private" type="bit">
                 <constraints nullable="true" />
             </column>
-            
+            <column name="user_id" type="bigint">
+                <constraints nullable="false" />
+            </column>
             <!-- jhipster-needle-liquibase-add-column - Jhipster will add columns here, do not remove-->
         </createTable>
         <dropDefaultValue tableName="project" columnName="created_on" columnDataType="datetime"/>
-        
+
     </changeSet>
 </databaseChangeLog>
