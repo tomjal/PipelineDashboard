@@ -35,7 +35,6 @@
         <table class="jh-table table table-striped">
             <thead>
                 <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.transition()">
-                    <th jh-sort-by="id"><span>ID</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="name"><span>Name</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="description"><span>Description</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="createdOn"><span>Created On</span> <span class="glyphicon glyphicon-sort"></span></th>
@@ -46,8 +45,7 @@
             </thead>
             <tbody>
                 <tr ng-repeat="project in vm.projects track by project.id">
-                    <td><a ui-sref="project-detail({id:project.id})">{{project.id}}</a></td>
-                    <td>{{project.name}}</td>
+                    <td><a ui-sref="project-detail({id:project.id})">{{project.name}}</a></td>
                     <td>{{project.description}}</td>
                     <td>{{project.createdOn | date:'medium'}}</td>
                     <td>{{project.isPrivate}}</td>
