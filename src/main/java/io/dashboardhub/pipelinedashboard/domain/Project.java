@@ -44,7 +44,7 @@ public class Project implements Serializable {
     private Boolean isPrivate;
 
     @OneToMany(mappedBy = "project", fetch = FetchType.EAGER)
-    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+//    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<Repo> repos = new HashSet<>();
 
     @OneToOne
