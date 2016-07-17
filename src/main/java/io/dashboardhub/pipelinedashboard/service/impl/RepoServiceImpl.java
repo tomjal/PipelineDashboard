@@ -4,8 +4,10 @@ import io.dashboardhub.pipelinedashboard.service.RepoService;
 import io.dashboardhub.pipelinedashboard.domain.Repo;
 import io.dashboardhub.pipelinedashboard.repository.RepoRepository;
 import io.dashboardhub.pipelinedashboard.repository.search.RepoSearchRepository;
+import io.dashboardhub.pipelinedashboard.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.stereotype.Service;
 
@@ -24,20 +26,30 @@ import static org.elasticsearch.index.query.QueryBuilders.*;
 public class RepoServiceImpl implements RepoService{
 
     private final Logger log = LoggerFactory.getLogger(RepoServiceImpl.class);
-    
+
     @Inject
     private RepoRepository repoRepository;
-    
+
+    @Inject
+    private UserService userService;
+
     @Inject
     private RepoSearchRepository repoSearchRepository;
-    
+
     /**
      * Save a repo.
-     * 
+     *
      * @param repo the entity to save
      * @return the persisted entity
      */
     public Repo save(Repo repo) {
+        Repo foundRepo = findOne(repo.getId());
+        if (foundRepo != null) {
+            if (!foundRepo.getProject().getUser().getId().equals(userService.getUserWithAuthorities().getId())) {
+                throw new AccessDeniedException("This is not your Repo to edit");
+            }
+        }
+
         log.debug("Request to save Repo : {}", repo);
         Repo result = repoRepository.save(repo);
         repoSearchRepository.save(result);
@@ -46,13 +58,13 @@ public class RepoServiceImpl implements RepoService{
 
     /**
      *  Get all the repos.
-     *  
+     *
      *  @return the list of entities
      */
-    @Transactional(readOnly = true) 
+    @Transactional(readOnly = true)
     public List<Repo> findAll() {
         log.debug("Request to get all Repos");
-        List<Repo> result = repoRepository.findAll();
+        List<Repo> result = repoRepository.findAllByUserId(userService.getUserWithAuthorities().getId());
         return result;
     }
 
@@ -62,7 +74,7 @@ public class RepoServiceImpl implements RepoService{
      *  @param id the id of the entity
      *  @return the entity
      */
-    @Transactional(readOnly = true) 
+    @Transactional(readOnly = true)
     public Repo findOne(Long id) {
         log.debug("Request to get Repo : {}", id);
         Repo repo = repoRepository.findOne(id);
@@ -71,10 +83,17 @@ public class RepoServiceImpl implements RepoService{
 
     /**
      *  Delete the  repo by id.
-     *  
+     *
      *  @param id the id of the entity
      */
     public void delete(Long id) {
+        Repo foundRepo = findOne(id);
+        if (foundRepo != null) {
+            if (!foundRepo.getProject().getUser().getId().equals(userService.getUserWithAuthorities().getId())) {
+                throw new AccessDeniedException("This is not your Repo to delete");
+            }
+        }
+
         log.debug("Request to delete Repo : {}", id);
         repoRepository.delete(id);
         repoSearchRepository.delete(id);
