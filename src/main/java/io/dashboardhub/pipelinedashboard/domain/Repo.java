@@ -1,5 +1,7 @@
 package io.dashboardhub.pipelinedashboard.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.springframework.data.elasticsearch.annotations.Document;
@@ -40,6 +42,7 @@ public class Repo implements Serializable {
 
     @ManyToOne
     @NotNull
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private Project project;
 
     public Long getId() {

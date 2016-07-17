@@ -32,3 +32,47 @@
         <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span> Back</span>
     </button>
 </div>
+
+<div class="table-responsive">
+    <table class="jh-table table table-striped">
+        <thead>
+        <tr>
+            <th><span>ID</span></th>
+            <th><span>Created On</span></th>
+            <th><span>Owner</span></th>
+            <th><span>Name</span></th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="repo in vm.project.repos track by repo.id">
+            <td><a ui-sref="repo-detail({id:repo.id})">{{repo.id}}</a></td>
+            <td>{{repo.createdOn | date:'medium'}}</td>
+            <td>{{repo.owner}}</td>
+            <td>{{repo.name}}</td>
+            <td class="text-right">
+                <div class="btn-group flex-btn-group-container">
+                    <button type="submit"
+                            ui-sref="repo-detail({id:repo.id})"
+                            class="btn btn-info btn-sm">
+                        <span class="glyphicon glyphicon-eye-open"></span>
+                        <span class="hidden-xs hidden-sm"></span>
+                    </button>
+                    <button type="submit"
+                            ui-sref="repo.edit({id:repo.id})"
+                            class="btn btn-primary btn-sm">
+                        <span class="glyphicon glyphicon-pencil"></span>
+                        <span class="hidden-xs hidden-sm"></span>
+                    </button>
+                    <button type="submit"
+                            ui-sref="repo.delete({id:repo.id})"
+                            class="btn btn-danger btn-sm">
+                        <span class="glyphicon glyphicon-remove-circle"></span>
+                        <span class="hidden-xs hidden-sm"></span>
+                    </button>
+                </div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>

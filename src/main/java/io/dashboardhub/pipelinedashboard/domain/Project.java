@@ -43,8 +43,7 @@ public class Project implements Serializable {
     @Column(name = "is_private")
     private Boolean isPrivate;
 
-    @OneToMany(mappedBy = "project")
-    @JsonIgnore
+    @OneToMany(mappedBy = "project", fetch = FetchType.EAGER)
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<Repo> repos = new HashSet<>();
 
