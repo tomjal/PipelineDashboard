@@ -39,7 +39,7 @@
                     <th jh-sort-by="description"><span>Description</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="createdOn"><span>Created On</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="isPrivate"><span>Is Private</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="user.name"><span>User</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th><span>Repos</span></th>
                     <th></th>
                 </tr>
             </thead>
@@ -49,9 +49,7 @@
                     <td>{{project.description}}</td>
                     <td>{{project.createdOn | date:'medium'}}</td>
                     <td>{{project.isPrivate}}</td>
-                    <td>
-                        {{project.user.firstName}} {{project.user.lastName}}
-                    </td>
+                    <td>{{project.repos.length}}</td>
                     <td class="text-right">
                         <div class="btn-group flex-btn-group-container">
                             <button type="submit"
