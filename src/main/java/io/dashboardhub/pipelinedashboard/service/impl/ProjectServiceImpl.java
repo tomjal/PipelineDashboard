@@ -106,7 +106,7 @@ public class ProjectServiceImpl implements ProjectService {
         Project foundProject = findOne(id);
         if (foundProject != null) {
             if (!foundProject.getUser().getId().equals(userService.getUserWithAuthorities().getId())) {
-                throw new AccessDeniedException("This is not your Project to edit");
+                throw new AccessDeniedException("This is not your Project to delete");
             }
         }
         log.debug("Request to delete Project : {}", id);
