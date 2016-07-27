@@ -18,7 +18,7 @@ spring:
         livereload:
             enabled: false
     datasource:
-        url: jdbc:mysql://localhost:3306/PipelineDashboard?useUnicode=true&characterEncoding=utf8&useSSL=false
+        url: jdbc:mysql://localhost:3306/pipelinedashboard?useUnicode=true&characterEncoding=utf8&useSSL=false
         name:
         username: root
         password:
@@ -31,7 +31,7 @@ spring:
     jpa:
         database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
         database: MYSQL
-        show_sql: false
+        show-sql: false
         properties:
             hibernate.cache.use_second_level_cache: true
             hibernate.cache.use_query_cache: false
@@ -74,9 +74,9 @@ jhipster:
     security:
         rememberMe:
             # security key (this key should be unique for your application, and kept secret)
-            key: b39150fe769388c569acbcda05625ea1321cf4a0
+            key: e0d0c48d71f796802ee96f68b7696d794f8fb370
     mail: # specific JHipster mail property, for standard properties see MailProperties
-        from: PipelineDashboard@localhost
+        from: pipelinedashboard@localhost
     metrics: # DropWizard Metrics configuration, used by MetricsConfiguration
         jmx.enabled: true
         spark:
@@ -87,7 +87,7 @@ jhipster:
             enabled: false
             host: localhost
             port: 2003
-            prefix: PipelineDashboard
+            prefix: pipelinedashboard
         logs: # Reports Dropwizard metrics in the logs
             enabled: false
             reportFrequency: 60 # in seconds
@@ -97,5 +97,3 @@ jhipster:
             host: localhost
             port: 5000
             queueSize: 512
-    swagger: # swagger is disabled. It can be disabled by pasing 'no-swagger' profile at run time as well
-        enabled: false

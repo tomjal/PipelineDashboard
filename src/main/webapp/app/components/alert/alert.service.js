@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('pipelineDashboardApp')
+        .module('pipelinedashboardApp')
         .provider('AlertService', AlertService);
 
     function AlertService () {

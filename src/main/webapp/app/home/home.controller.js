@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('pipelineDashboardApp')
+        .module('pipelinedashboardApp')
         .controller('HomeController', HomeController);
 
     HomeController.$inject = ['$scope', 'Principal', 'LoginService', '$state'];

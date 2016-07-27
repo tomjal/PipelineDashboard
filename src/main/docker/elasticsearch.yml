@@ -4,7 +4,7 @@ services:
         container_name: pipelinedashboard-elasticsearch
         image: elasticsearch:1.7.5
         # volumes:
-        #     - ~/volumes/jhipster/PipelineDashboard/elasticsearch/:/usr/share/elasticsearch/data/
+        #     - ~/volumes/jhipster/pipelinedashboard/elasticsearch/:/usr/share/elasticsearch/data/
         ports:
             - 9200:9200
             - 9300:9300

@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('pipelineDashboardApp')
+        .module('pipelinedashboardApp')
         .config(httpConfig);
 
     httpConfig.$inject = ['$urlRouterProvider', '$httpProvider', 'httpRequestInterceptorCacheBusterProvider', '$urlMatcherFactoryProvider'];

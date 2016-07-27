@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('pipelineDashboardApp')
+        .module('pipelinedashboardApp')
         .controller('ResetFinishController', ResetFinishController);
 
     ResetFinishController.$inject = ['$stateParams', '$timeout', 'Auth', 'LoginService'];

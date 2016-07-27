@@ -1,4 +1,4 @@
-# PipelineDashboard
+# pipelinedashboard
 
 This application was generated using JHipster, you can find documentation and help at [https://jhipster.github.io](https://jhipster.github.io).
 
@@ -31,7 +31,7 @@ Add the `-h` flag on any command to see how you can use it. For example, `bower 
 
 ## Building for production
 
-To optimize the PipelineDashboard client for production, run:
+To optimize the pipelinedashboard client for production, run:
 
     ./mvnw -Pprod clean package
 
@@ -40,7 +40,7 @@ these new files.
 
 To ensure everything worked, run:
 
-    java -jar target/*.war --spring.profiles.active=prod
+    java -jar target/*.war
 
 Then navigate to [http://localhost:8080](http://localhost:8080) in your browser.
 
@@ -57,9 +57,9 @@ and can be run by starting Spring Boot in one terminal (`./mvnw spring-boot:run`
 
 To setup this project in Jenkins, use the following configuration:
 
-* Project name: `PipelineDashboard`
+* Project name: `pipelinedashboard`
 * Source Code Management
-    * Git Repository: `git@github.com:xxxx/PipelineDashboard.git`
+    * Git Repository: `git@github.com:xxxx/pipelinedashboard.git`
     * Branches to build: `*/master`
     * Additional Behaviours: `Wipe out repository & force clone`
 * Build Triggers

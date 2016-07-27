@@ -15,6 +15,6 @@
     };
 
     angular
-        .module('pipelineDashboardApp')
+        .module('pipelinedashboardApp')
         .component('jhiItemCount', jhiItemCount);
 })();

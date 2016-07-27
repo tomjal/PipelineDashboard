@@ -1,6 +1,6 @@
 package io.dashboardhub.pipelinedashboard.web.rest;
 
-import io.dashboardhub.pipelinedashboard.PipelineDashboardApp;
+import io.dashboardhub.pipelinedashboard.PipelinedashboardApp;
 import io.dashboardhub.pipelinedashboard.domain.Authority;
 import io.dashboardhub.pipelinedashboard.domain.User;
 import io.dashboardhub.pipelinedashboard.repository.AuthorityRepository;
@@ -43,7 +43,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * @see UserService
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(classes = PipelineDashboardApp.class)
+@SpringApplicationConfiguration(classes = PipelinedashboardApp.class)
 @WebAppConfiguration
 @IntegrationTest
 public class AccountResourceIntTest {
@@ -152,7 +152,7 @@ public class AccountResourceIntTest {
             "Shmoe",                // lastName
             "joe@example.com",      // e-mail
             true,                   // activated
-            "en",               // langKey
+            "en",                   // langKey
             new HashSet<>(Arrays.asList(AuthoritiesConstants.USER)),
             null,                   // createdDate
             null,                   // lastModifiedBy
@@ -180,7 +180,7 @@ public class AccountResourceIntTest {
             "One",                  // lastName
             "funky@example.com",    // e-mail
             true,                   // activated
-            "en",               // langKey
+            "en",                   // langKey
             new HashSet<>(Arrays.asList(AuthoritiesConstants.USER)),
             null,                   // createdDate
             null,                   // lastModifiedBy
@@ -201,7 +201,7 @@ public class AccountResourceIntTest {
     @Transactional
     public void testRegisterInvalidEmail() throws Exception {
         ManagedUserDTO invalidUser = new ManagedUserDTO(
-            null,                   // id
+            null,               // id
             "bob",              // login
             "password",         // password
             "Bob",              // firstName
@@ -210,9 +210,9 @@ public class AccountResourceIntTest {
             true,               // activated
             "en",               // langKey
             new HashSet<>(Arrays.asList(AuthoritiesConstants.USER)),
-            null,                   // createdDate
-            null,                   // lastModifiedBy
-            null                    // lastModifiedDate
+            null,               // createdDate
+            null,               // lastModifiedBy
+            null                // lastModifiedDate
         );
 
         restUserMockMvc.perform(
@@ -229,7 +229,7 @@ public class AccountResourceIntTest {
     @Transactional
     public void testRegisterInvalidPassword() throws Exception {
         ManagedUserDTO invalidUser = new ManagedUserDTO(
-            null,                   // id
+            null,               // id
             "bob",              // login
             "123",              // password with only 3 digits
             "Bob",              // firstName
@@ -238,9 +238,9 @@ public class AccountResourceIntTest {
             true,               // activated
             "en",               // langKey
             new HashSet<>(Arrays.asList(AuthoritiesConstants.USER)),
-            null,                   // createdDate
-            null,                   // lastModifiedBy
-            null                    // lastModifiedDate
+            null,               // createdDate
+            null,               // lastModifiedBy
+            null                // lastModifiedDate
         );
 
         restUserMockMvc.perform(
@@ -265,7 +265,7 @@ public class AccountResourceIntTest {
             "Something",            // lastName
             "alice@example.com",    // e-mail
             true,                   // activated
-            "en",               // langKey
+            "en",                   // langKey
             new HashSet<>(Arrays.asList(AuthoritiesConstants.USER)),
             null,                   // createdDate
             null,                   // lastModifiedBy
@@ -306,7 +306,7 @@ public class AccountResourceIntTest {
             "Doe",                  // lastName
             "john@example.com",     // e-mail
             true,                   // activated
-            "en",               // langKey
+            "en",                   // langKey
             new HashSet<>(Arrays.asList(AuthoritiesConstants.USER)),
             null,                   // createdDate
             null,                   // lastModifiedBy
@@ -346,7 +346,7 @@ public class AccountResourceIntTest {
             "Guy",                  // lastName
             "badguy@example.com",   // e-mail
             true,                   // activated
-            "en",               // langKey
+            "en",                   // langKey
             new HashSet<>(Arrays.asList(AuthoritiesConstants.ADMIN)),
             null,                   // createdDate
             null,                   // lastModifiedBy
@@ -374,7 +374,7 @@ public class AccountResourceIntTest {
             "One",                  // lastName
             "funky@example.com",    // e-mail
             true,                   // activated
-            "en",               // langKey
+            "en",                   // langKey
             new HashSet<>(Arrays.asList(AuthoritiesConstants.USER))
         );
 

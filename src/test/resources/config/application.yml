@@ -12,9 +12,11 @@
 
 spring:
     application:
-        name: PipelineDashboard
+        name: pipelinedashboard
+    jackson:
+        serialization.write_dates_as_timestamps: false
     datasource:
-        url: jdbc:h2:mem:PipelineDashboard;DB_CLOSE_DELAY=-1
+        url: jdbc:h2:mem:pipelinedashboard;DB_CLOSE_DELAY=-1
         name:
         username:
         password:
@@ -22,7 +24,7 @@ spring:
         database-platform: io.dashboardhub.pipelinedashboard.domain.util.FixedH2Dialect
         database: H2
         open-in-view: false
-        show_sql: true
+        show-sql: true
         hibernate:
             ddl-auto: none
             naming-strategy: org.springframework.boot.orm.jpa.hibernate.SpringNamingStrategy
@@ -70,12 +72,12 @@ jhipster:
     security:
         rememberMe:
             # security key (this key should be unique for your application, and kept secret)
-            key: b39150fe769388c569acbcda05625ea1321cf4a0
+            key: e0d0c48d71f796802ee96f68b7696d794f8fb370
     metrics: # DropWizard Metrics configuration, used by MetricsConfiguration
         jmx.enabled: true
     swagger:
-        title: PipelineDashboard API
-        description: PipelineDashboard API documentation
+        title: pipelinedashboard API
+        description: pipelinedashboard API documentation
         version: 0.0.1
         termsOfServiceUrl:
         contactName:
@@ -83,4 +85,3 @@ jhipster:
         contactEmail:
         license:
         licenseUrl:
-        enabled: false

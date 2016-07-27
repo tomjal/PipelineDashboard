@@ -5,15 +5,15 @@
     <parent>
         <artifactId>spring-boot-starter-parent</artifactId>
         <groupId>org.springframework.boot</groupId>
-        <version>1.3.5.RELEASE</version>
+        <version>1.3.6.RELEASE</version>
         <relativePath/>
     </parent>
 
     <groupId>io.dashboardhub.pipelinedashboard</groupId>
-    <artifactId>pipeline-dashboard</artifactId>
+    <artifactId>pipelinedashboard</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>war</packaging>
-    <name>Pipeline Dashboard</name>
+    <name>Pipelinedashboard</name>
 
     <prerequisites>
         <maven>3.0.0</maven>
@@ -47,7 +47,7 @@
         <logstash-logback-encoder.version>4.6</logstash-logback-encoder.version>
         <run.addResources>false</run.addResources>
         <spring-security.version>4.1.0.RELEASE</spring-security.version>
-        <springfox.version>2.4.0</springfox.version>
+        <springfox.version>2.5.0</springfox.version>
         <!-- Spring social -->
         <httpclient.version>4.5.1</httpclient.version>
         <spring-social-security.version>1.1.2.RELEASE</spring-social-security.version>
@@ -71,7 +71,7 @@
         <sonar.tests>${project.basedir}/src/test/</sonar.tests>
         <!-- These remain empty unless the corresponding profile is active -->
         <profile.no-liquibase></profile.no-liquibase>
-        <profile.no-swagger></profile.no-swagger>
+        <profile.swagger></profile.swagger>
     </properties>
 
 
@@ -611,7 +611,7 @@
                 </executions>
             </plugin>
             <plugin>
-                <groupId>org.codehaus.mojo</groupId>
+                <groupId>org.sonarsource.scanner.maven</groupId>
                 <artifactId>sonar-maven-plugin</artifactId>
                 <version>${sonar-maven-plugin.version}</version>
             </plugin>
@@ -658,7 +658,7 @@
                     <driver>org.h2.Driver</driver>
                     <url>jdbc:h2:file:./target/h2db/db/pipelinedashboard</url>
                     <defaultSchemaName></defaultSchemaName>
-                    <username>PipelineDashboard</username>
+                    <username>pipelinedashboard</username>
                     <password></password>
                     <referenceUrl>hibernate:spring:io.dashboardhub.pipelinedashboard.domain?dialect=org.hibernate.dialect.H2Dialect&amp;hibernate.ejb.naming_strategy=org.springframework.boot.orm.jpa.hibernate.SpringNamingStrategy</referenceUrl>
                     <verbose>true</verbose>
@@ -696,7 +696,7 @@
             <plugin>
                 <groupId>com.spotify</groupId>
                 <artifactId>docker-maven-plugin</artifactId>
-                <version>0.4.5</version>
+                <version>0.4.10</version>
                 <configuration>
                     <imageName>pipelinedashboard</imageName>
                     <dockerDirectory>src/main/docker</dockerDirectory>
@@ -778,9 +778,9 @@
             </properties>
         </profile>
         <profile>
-            <id>no-swagger</id>
+            <id>swagger</id>
             <properties>
-                <profile.no-swagger>,no-swagger</profile.no-swagger>
+                <profile.swagger>,swagger</profile.swagger>
             </properties>
         </profile>
         <profile>
@@ -815,7 +815,7 @@
                 <!-- log configuration -->
                 <logback.loglevel>DEBUG</logback.loglevel>
                 <!-- default Spring profiles -->
-                <spring.profiles.active>dev${profile.no-liquibase}${profile.no-swagger}</spring.profiles.active>
+                <spring.profiles.active>dev${profile.no-liquibase}</spring.profiles.active>
             </properties>
         </profile>
         <profile>
@@ -839,8 +839,8 @@
                                     <goal>install-node-and-npm</goal>
                                 </goals>
                                 <configuration>
-                                    <nodeVersion>v4.4.3</nodeVersion>
-                                    <npmVersion>3.8.3</npmVersion>
+                                    <nodeVersion>v4.4.7</nodeVersion>
+                                    <npmVersion>3.10.5</npmVersion>
                                 </configuration>
                             </execution>
                             <execution>
@@ -914,7 +914,7 @@
                 <!-- log configuration -->
                 <logback.loglevel>INFO</logback.loglevel>
                 <!-- default Spring profiles -->
-                <spring.profiles.active>prod${profile.no-liquibase}${profile.no-swagger}</spring.profiles.active>
+                <spring.profiles.active>prod${profile.swagger}${profile.no-liquibase}</spring.profiles.active>
             </properties>
         </profile>
     </profiles>

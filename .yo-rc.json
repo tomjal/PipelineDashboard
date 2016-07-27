@@ -1,7 +1,7 @@
 {
   "generator-jhipster": {
-    "jhipsterVersion": "3.4.2",
-    "baseName": "PipelineDashboard",
+    "jhipsterVersion": "3.5.1",
+    "baseName": "pipelinedashboard",
     "packageName": "io.dashboardhub.pipelinedashboard",
     "packageFolder": "io/dashboardhub/pipelinedashboard",
     "serverPort": "8080",
@@ -15,7 +15,7 @@
     "searchEngine": "elasticsearch",
     "buildTool": "maven",
     "enableSocialSignIn": true,
-    "rememberMeKey": "b39150fe769388c569acbcda05625ea1321cf4a0",
+    "rememberMeKey": "e0d0c48d71f796802ee96f68b7696d794f8fb370",
     "useSass": false,
     "applicationType": "monolith",
     "testFrameworks": [

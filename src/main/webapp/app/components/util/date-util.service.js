@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('pipelineDashboardApp')
+        .module('pipelinedashboardApp')
         .factory('DateUtils', DateUtils);
 
     DateUtils.$inject = ['$filter'];

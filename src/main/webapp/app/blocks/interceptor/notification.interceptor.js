@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('pipelineDashboardApp')
+        .module('pipelinedashboardApp')
         .factory('notificationInterceptor', notificationInterceptor);
 
     notificationInterceptor.$inject = ['$q', 'AlertService'];
@@ -15,9 +15,9 @@
         return service;
 
         function response (response) {
-            var alertKey = response.headers('X-pipelineDashboardApp-alert');
+            var alertKey = response.headers('X-pipelinedashboardApp-alert');
             if (angular.isString(alertKey)) {
-                AlertService.success(alertKey, { param : response.headers('X-pipelineDashboardApp-params')});
+                AlertService.success(alertKey, { param : response.headers('X-pipelinedashboardApp-params')});
             }
             return response;
         }

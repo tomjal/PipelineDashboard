@@ -1,6 +1,6 @@
 package io.dashboardhub.pipelinedashboard.web.rest;
 
-import io.dashboardhub.pipelinedashboard.PipelineDashboardApp;
+import io.dashboardhub.pipelinedashboard.PipelinedashboardApp;
 import io.dashboardhub.pipelinedashboard.domain.User;
 import io.dashboardhub.pipelinedashboard.repository.UserRepository;
 import io.dashboardhub.pipelinedashboard.service.UserService;
@@ -29,7 +29,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * @see UserResource
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(classes = PipelineDashboardApp.class)
+@SpringApplicationConfiguration(classes = PipelinedashboardApp.class)
 @WebAppConfiguration
 @IntegrationTest
 public class UserResourceIntTest {

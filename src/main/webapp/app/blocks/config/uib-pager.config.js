@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('pipelineDashboardApp')
+        .module('pipelinedashboardApp')
         .config(pagerConfig);
 
     pagerConfig.$inject = ['uibPagerConfig', 'paginationConstants'];

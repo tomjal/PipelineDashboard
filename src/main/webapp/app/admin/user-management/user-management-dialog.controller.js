@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('pipelineDashboardApp')
+        .module('pipelinedashboardApp')
         .controller('UserManagementDialogController',UserManagementDialogController);
 
     UserManagementDialogController.$inject = ['$stateParams', '$uibModalInstance', 'entity', 'User'];

@@ -2,7 +2,7 @@
 
 describe('Controller Tests', function () {
 
-    beforeEach(module('pipelineDashboardApp'));
+    beforeEach(module('pipelinedashboardApp'));
 
     describe('LoginController', function () {
         var $scope, authService;

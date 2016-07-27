@@ -1,6 +1,6 @@
 package io.dashboardhub.pipelinedashboard.web.rest;
 
-import io.dashboardhub.pipelinedashboard.PipelineDashboardApp;
+import io.dashboardhub.pipelinedashboard.PipelinedashboardApp;
 import io.dashboardhub.pipelinedashboard.config.audit.AuditEventConverter;
 import io.dashboardhub.pipelinedashboard.domain.PersistentAuditEvent;
 import io.dashboardhub.pipelinedashboard.repository.PersistenceAuditEventRepository;
@@ -33,7 +33,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  *
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(classes = PipelineDashboardApp.class)
+@SpringApplicationConfiguration(classes = PipelinedashboardApp.class)
 @WebAppConfiguration
 @IntegrationTest
 @Transactional
@@ -68,7 +68,7 @@ public class AuditResourceIntTest {
         AuditResource auditResource = new AuditResource(auditEventService);
         this.restAuditMockMvc = MockMvcBuilders.standaloneSetup(auditResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
-            .setMessageConverters(jacksonMessageConverter).build();;
+            .setMessageConverters(jacksonMessageConverter).build();
     }
 
     @Before

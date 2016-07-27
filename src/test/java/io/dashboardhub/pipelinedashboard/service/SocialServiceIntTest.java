@@ -1,6 +1,6 @@
 package io.dashboardhub.pipelinedashboard.service;
 
-import io.dashboardhub.pipelinedashboard.PipelineDashboardApp;
+import io.dashboardhub.pipelinedashboard.PipelinedashboardApp;
 import io.dashboardhub.pipelinedashboard.domain.Authority;
 import io.dashboardhub.pipelinedashboard.domain.User;
 import io.dashboardhub.pipelinedashboard.repository.AuthorityRepository;
@@ -30,7 +30,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.*;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(classes = PipelineDashboardApp.class)
+@SpringApplicationConfiguration(classes = PipelinedashboardApp.class)
 @WebAppConfiguration
 @IntegrationTest
 @Transactional

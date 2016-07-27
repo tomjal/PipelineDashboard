@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('pipelineDashboardApp')
+        .module('pipelinedashboardApp')
         .directive('jhSortBy', jhSortBy);
 
     function jhSortBy() {

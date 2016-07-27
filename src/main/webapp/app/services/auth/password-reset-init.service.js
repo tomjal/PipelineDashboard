@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('pipelineDashboardApp')
+        .module('pipelinedashboardApp')
         .factory('PasswordResetInit', PasswordResetInit);
 
     PasswordResetInit.$inject = ['$resource'];

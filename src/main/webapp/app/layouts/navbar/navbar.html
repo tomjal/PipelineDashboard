@@ -9,7 +9,7 @@
             </button>
             <a class="navbar-brand logo" href="#/" ng-click="vm.collapseNavbar()">
                 <img class="logo-img" src="content/images/logo-jhipster.png"/>
-                <span>PipelineDashboard</span> <span class="navbar-version">v{{VERSION}}</span>
+                <span>Pipelinedashboard</span> <span class="navbar-version">v{{VERSION}}</span>
             </a>
         </div>
         <div class="navbar-collapse" uib-collapse="vm.isNavbarCollapsed" ng-switch="vm.isAuthenticated()">
@@ -32,18 +32,6 @@
                         </span>
                     </a>
                     <ul class="dropdown-menu" uib-dropdown-menu>
-                        <li ui-sref-active="active" >
-                            <a ui-sref="project" ng-click="vm.collapseNavbar()">
-                                <span class="glyphicon glyphicon-asterisk"></span>&nbsp;
-                                <span >Project</span>
-                            </a>
-                        </li>
-                        <li ui-sref-active="active" >
-                            <a ui-sref="repo" ng-click="vm.collapseNavbar()">
-                                <span class="glyphicon glyphicon-asterisk"></span>&nbsp;
-                                <span >Repo</span>
-                            </a>
-                        </li>
                         <!-- jhipster-needle-add-entity-to-menu - JHipster will add entities to the menu here -->
                     </ul>
                 </li>
@@ -147,7 +135,7 @@
                                 <span>Logs</span>
                             </a>
                         </li>
-                        <li ng-hide="vm.inProduction || vm.swaggerDisabled" ui-sref-active="active">
+                        <li ng-show="vm.swaggerEnabled" ui-sref-active="active">
                             <a ui-sref="docs" ng-click="vm.collapseNavbar()">
                                 <span class="glyphicon glyphicon-book"></span>&nbsp;
                                 <span>API</span>

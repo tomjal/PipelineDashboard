@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('pipelineDashboardApp')
+        .module('pipelinedashboardApp')
         .controller('SessionsController', SessionsController);
 
     SessionsController.$inject = ['Sessions', 'Principal'];

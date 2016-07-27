@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('pipelineDashboardApp')
+        .module('pipelinedashboardApp')
         .config(localStorageConfig);
 
     localStorageConfig.$inject = ['$localStorageProvider', '$sessionStorageProvider'];

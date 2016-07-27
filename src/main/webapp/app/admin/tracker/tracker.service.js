@@ -3,7 +3,7 @@
     /* globals SockJS, Stomp */
 
     angular
-        .module('pipelineDashboardApp')
+        .module('pipelinedashboardApp')
         .factory('JhiTrackerService', JhiTrackerService);
 
     JhiTrackerService.$inject = ['$rootScope', '$window', '$cookies', '$http', '$q'];

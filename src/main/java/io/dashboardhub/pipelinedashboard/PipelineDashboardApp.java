@@ -24,15 +24,15 @@ import java.util.Collection;
 @ComponentScan
 @EnableAutoConfiguration(exclude = { MetricFilterAutoConfiguration.class, MetricRepositoryAutoConfiguration.class })
 @EnableConfigurationProperties({ JHipsterProperties.class, LiquibaseProperties.class })
-public class PipelineDashboardApp {
+public class PipelinedashboardApp {
 
-    private static final Logger log = LoggerFactory.getLogger(PipelineDashboardApp.class);
+    private static final Logger log = LoggerFactory.getLogger(PipelinedashboardApp.class);
 
     @Inject
     private Environment env;
 
     /**
-     * Initializes PipelineDashboard.
+     * Initializes pipelinedashboard.
      * <p>
      * Spring profiles can be configured with a program arguments --spring.profiles.active=your-active-profile
      * <p>
@@ -59,7 +59,7 @@ public class PipelineDashboardApp {
      * @throws UnknownHostException if the local host name could not be resolved into an address
      */
     public static void main(String[] args) throws UnknownHostException {
-        SpringApplication app = new SpringApplication(PipelineDashboardApp.class);
+        SpringApplication app = new SpringApplication(PipelinedashboardApp.class);
         DefaultProfileUtil.addDefaultProfile(app);
         Environment env = app.run(args).getEnvironment();
         log.info("\n----------------------------------------------------------\n\t" +

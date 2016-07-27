@@ -1,6 +1,6 @@
 {
   "version": "0.0.0",
-  "name": "pipeline-dashboard",
+  "name": "pipelinedashboard",
   "appPath": "src/main/webapp/",
   "testPath": "src/test/javascript/spec",
   "dependencies": {
@@ -30,12 +30,12 @@
     "angular-mocks": "1.5.5"
   },
   "overrides": {
-    "angular" : {
+    "angular": {
       "dependencies": {
         "jquery": "2.2.4"
       }
     },
-    "angular-cache-buster" : {
+    "angular-cache-buster": {
       "dependencies": {
         "angular": "1.5.5"
       }

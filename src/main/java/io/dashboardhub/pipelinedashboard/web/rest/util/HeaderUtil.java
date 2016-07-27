@@ -6,7 +6,6 @@ import org.springframework.http.HttpHeaders;
 
 /**
  * Utility class for HTTP headers creation.
- *
  */
 public class HeaderUtil {
 
@@ -14,8 +13,8 @@ public class HeaderUtil {
 
     public static HttpHeaders createAlert(String message, String param) {
         HttpHeaders headers = new HttpHeaders();
-        headers.add("X-pipelineDashboardApp-alert", message);
-        headers.add("X-pipelineDashboardApp-params", param);
+        headers.add("X-pipelinedashboardApp-alert", message);
+        headers.add("X-pipelinedashboardApp-params", param);
         return headers;
     }
 
@@ -34,8 +33,8 @@ public class HeaderUtil {
     public static HttpHeaders createFailureAlert(String entityName, String errorKey, String defaultMessage) {
         log.error("Entity creation failed, {}", defaultMessage);
         HttpHeaders headers = new HttpHeaders();
-        headers.add("X-pipelineDashboardApp-error", defaultMessage);
-        headers.add("X-pipelineDashboardApp-params", entityName);
+        headers.add("X-pipelinedashboardApp-error", defaultMessage);
+        headers.add("X-pipelinedashboardApp-params", entityName);
         return headers;
     }
 }

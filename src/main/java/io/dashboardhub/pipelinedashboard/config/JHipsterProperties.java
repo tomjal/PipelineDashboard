@@ -5,7 +5,6 @@ import javax.validation.constraints.NotNull;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.web.cors.CorsConfiguration;
 
-
 /**
  * Properties specific to JHipster.
  *
@@ -165,7 +164,7 @@ public class JHipsterProperties {
 
     public static class Mail {
 
-        private String from = "PipelineDashboard@localhost";
+        private String from = "pipelinedashboard@localhost";
 
         public String getFrom() {
             return from;
@@ -201,9 +200,9 @@ public class JHipsterProperties {
 
     public static class Swagger {
 
-        private String title = "PipelineDashboard API";
+        private String title = "pipelinedashboard API";
 
-        private String description = "PipelineDashboard API documentation";
+        private String description = "pipelinedashboard API documentation";
 
         private String version = "0.0.1";
 
@@ -218,8 +217,6 @@ public class JHipsterProperties {
         private String license;
 
         private String licenseUrl;
-
-        private Boolean enabled;
 
         public String getTitle() {
             return title;
@@ -292,14 +289,6 @@ public class JHipsterProperties {
         public void setLicenseUrl(String licenseUrl) {
             this.licenseUrl = licenseUrl;
         }
-
-        public Boolean isEnabled() {
-            return enabled;
-        }
-
-        public void setEnabled(Boolean enabled) {
-            this.enabled = enabled;
-        }
     }
 
     public static class Metrics {
@@ -327,7 +316,6 @@ public class JHipsterProperties {
         public Logs getLogs() {
             return logs;
         }
-
 
         public static class Jmx {
 
@@ -383,7 +371,7 @@ public class JHipsterProperties {
 
             private int port = 2003;
 
-            private String prefix = "PipelineDashboard";
+            private String prefix = "pipelinedashboard";
 
             public boolean isEnabled() {
                 return enabled;
@@ -480,6 +468,7 @@ public class JHipsterProperties {
         }
 
     }
+
     public static class Social {
 
         private String redirectAfterSignIn = "/#/home";
@@ -492,6 +481,8 @@ public class JHipsterProperties {
             this.redirectAfterSignIn = redirectAfterSignIn;
         }
     }
+
+
     public static class Ribbon {
 
         private String[] displayOnActiveProfiles;
@@ -499,10 +490,9 @@ public class JHipsterProperties {
         public String[] getDisplayOnActiveProfiles() {
             return displayOnActiveProfiles;
         }
-        
+
         public void setDisplayOnActiveProfiles(String[] displayOnActiveProfiles) {
             this.displayOnActiveProfiles = displayOnActiveProfiles;
         }
-    }  
-
+    }
 }

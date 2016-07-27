@@ -3,7 +3,7 @@
     'use strict';
 
     angular
-        .module('pipelineDashboardApp')
+        .module('pipelinedashboardApp')
         .factory('Base64', Base64);
 
     function Base64 () {
@@ -85,6 +85,8 @@
                 chr1 = chr2 = chr3 = '';
                 enc1 = enc2 = enc3 = enc4 = '';
             }
+
+            return output;
         }
     }
 })();

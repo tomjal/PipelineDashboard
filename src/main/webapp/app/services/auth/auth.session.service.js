@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('pipelineDashboardApp')
+        .module('pipelinedashboardApp')
         .factory('AuthServerProvider', AuthServerProvider);
 
     AuthServerProvider.$inject = ['$http', '$localStorage' , 'JhiTrackerService'];

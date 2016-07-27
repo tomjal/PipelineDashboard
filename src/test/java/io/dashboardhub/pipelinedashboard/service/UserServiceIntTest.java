@@ -1,6 +1,6 @@
 package io.dashboardhub.pipelinedashboard.service;
 
-import io.dashboardhub.pipelinedashboard.PipelineDashboardApp;
+import io.dashboardhub.pipelinedashboard.PipelinedashboardApp;
 import io.dashboardhub.pipelinedashboard.domain.PersistentToken;
 import io.dashboardhub.pipelinedashboard.domain.User;
 import io.dashboardhub.pipelinedashboard.repository.PersistentTokenRepository;
@@ -28,7 +28,7 @@ import static org.assertj.core.api.Assertions.*;
  * @see UserService
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(classes = PipelineDashboardApp.class)
+@SpringApplicationConfiguration(classes = PipelinedashboardApp.class)
 @WebAppConfiguration
 @IntegrationTest
 @Transactional

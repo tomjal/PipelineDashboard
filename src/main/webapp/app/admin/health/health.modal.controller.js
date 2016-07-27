@@ -1,7 +1,7 @@
 (function() {
     'use strict';
 
-    angular.module('pipelineDashboardApp')
+    angular.module('pipelinedashboardApp')
         .controller('HealthModalController', HealthModalController);
 
     HealthModalController.$inject = ['$uibModalInstance', 'currentHealth', 'baseName', 'subSystemName'];

@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('pipelineDashboardApp')
+        .module('pipelinedashboardApp')
         .factory('Principal', Principal);
 
     Principal.$inject = ['$q', 'Account', 'JhiTrackerService'];

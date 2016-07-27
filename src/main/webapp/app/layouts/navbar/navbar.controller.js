@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('pipelineDashboardApp')
+        .module('pipelinedashboardApp')
         .controller('NavbarController', NavbarController);
 
     NavbarController.$inject = ['$state', 'Auth', 'Principal', 'ProfileService', 'LoginService'];
@@ -15,7 +15,7 @@
 
         ProfileService.getProfileInfo().then(function(response) {
             vm.inProduction = response.inProduction;
-            vm.swaggerDisabled = response.swaggerDisabled;
+            vm.swaggerEnabled = response.swaggerEnabled;
         });
 
         vm.login = login;

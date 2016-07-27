@@ -1,6 +1,6 @@
 package io.dashboardhub.pipelinedashboard.repository;
 
-import io.dashboardhub.pipelinedashboard.PipelineDashboardApp;
+import io.dashboardhub.pipelinedashboard.PipelinedashboardApp;
 import io.dashboardhub.pipelinedashboard.domain.SocialUserConnection;
 
 import org.junit.Before;
@@ -32,7 +32,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.*;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(classes = PipelineDashboardApp.class)
+@SpringApplicationConfiguration(classes = PipelinedashboardApp.class)
 @WebAppConfiguration
 @IntegrationTest
 @Transactional
@@ -418,7 +418,6 @@ public class CustomSocialUsersConnectionRepositoryIntTest {
             expireTime);
         return socialUserConnectionRepository.save(socialUserConnectionToSabe);
     }
-
 
     private void assertNewConnection(Connection<TestFacebookApi> connection) {
         assertEquals("facebook", connection.getKey().getProviderId());

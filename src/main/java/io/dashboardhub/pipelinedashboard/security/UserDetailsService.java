@@ -1,4 +1,5 @@
 package io.dashboardhub.pipelinedashboard.security;
+
 import io.dashboardhub.pipelinedashboard.domain.User;
 import io.dashboardhub.pipelinedashboard.repository.UserRepository;
 import org.slf4j.Logger;

@@ -11,7 +11,7 @@
     };
 
     angular
-        .module('pipelineDashboardApp')
+        .module('pipelinedashboardApp')
         .component('jhiAlert', jhiAlert);
 
     jhiAlertController.$inject = ['$scope', 'AlertService'];

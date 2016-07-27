@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('pipelineDashboardApp')
+        .module('pipelinedashboardApp')
         .controller('LogsController', LogsController);
 
     LogsController.$inject = ['LogsService'];

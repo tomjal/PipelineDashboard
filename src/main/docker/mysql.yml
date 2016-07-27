@@ -2,9 +2,9 @@ version: '2'
 services:
     pipelinedashboard-mysql:
         container_name: pipelinedashboard-mysql
-        image: mysql:5.7.12
+        image: mysql:5.7.13
         # volumes:
-        #     - ~/volumes/jhipster/PipelineDashboard/mysql/:/var/lib/mysql/
+        #     - ~/volumes/jhipster/pipelinedashboard/mysql/:/var/lib/mysql/
         environment:
             - MYSQL_USER=root
             - MYSQL_ALLOW_EMPTY_PASSWORD=yes

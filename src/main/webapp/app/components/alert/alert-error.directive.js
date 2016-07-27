@@ -11,7 +11,7 @@
     };
 
     angular
-        .module('pipelineDashboardApp')
+        .module('pipelinedashboardApp')
         .component('jhiAlertError', jhiAlertError);
 
     jhiAlertErrorController.$inject = ['$scope', 'AlertService', '$rootScope'];
@@ -36,7 +36,7 @@
             );
         }
 
-        var cleanHttpErrorListener = $rootScope.$on('pipelineDashboardApp.httpError', function (event, httpResponse) {
+        var cleanHttpErrorListener = $rootScope.$on('pipelinedashboardApp.httpError', function (event, httpResponse) {
             var i;
             event.stopPropagation();
             switch (httpResponse.status) {
@@ -46,8 +46,8 @@
                 break;
 
             case 400:
-                var errorHeader = httpResponse.headers('X-pipelineDashboardApp-error');
-                var entityKey = httpResponse.headers('X-pipelineDashboardApp-params');
+                var errorHeader = httpResponse.headers('X-pipelinedashboardApp-error');
+                var entityKey = httpResponse.headers('X-pipelinedashboardApp-params');
                 if (errorHeader) {
                     var entityName = entityKey;
                     addErrorAlert(errorHeader, errorHeader, {entityName: entityName});

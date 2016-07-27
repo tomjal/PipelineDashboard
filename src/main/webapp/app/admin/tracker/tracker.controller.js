@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('pipelineDashboardApp')
+        .module('pipelinedashboardApp')
         .controller('JhiTrackerController', JhiTrackerController);
 
     JhiTrackerController.$inject = ['$cookies', '$http', 'JhiTrackerService'];

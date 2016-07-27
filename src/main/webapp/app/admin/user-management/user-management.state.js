@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('pipelineDashboardApp')
+        .module('pipelinedashboardApp')
         .config(stateConfig);
 
     stateConfig.$inject = ['$stateProvider'];
@@ -14,7 +14,7 @@
             url: '/user-management?page&sort',
             data: {
                 authorities: ['ROLE_ADMIN'],
-                pageTitle: 'PipelineDashboard'
+                pageTitle: 'pipelinedashboard'
             },
             views: {
                 'content@': {
@@ -47,7 +47,7 @@
             url: '/user/:login',
             data: {
                 authorities: ['ROLE_ADMIN'],
-                pageTitle: 'PipelineDashboard'
+                pageTitle: 'pipelinedashboard'
             },
             views: {
                 'content@': {

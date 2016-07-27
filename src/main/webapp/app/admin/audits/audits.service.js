@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('pipelineDashboardApp')
+        .module('pipelinedashboardApp')
         .factory('AuditsService', AuditsService);
 
     AuditsService.$inject = ['$resource'];
