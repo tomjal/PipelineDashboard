@@ -24,6 +24,12 @@
         <dd>
             <span>{{vm.project.twitter}}</span>
         </dd>
+        <dt><span>Repos</span></dt>
+        <dd>
+            <span ng-repeat="repos in vm.project.repos">
+                <a ui-sref="repo-detail({id: repos.id})">{{repos.name}}</a>{{$last ? '' : ', '}}
+            </span>
+        </dd>
     </dl>
 
     <button type="submit"

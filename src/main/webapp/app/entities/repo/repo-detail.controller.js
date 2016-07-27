@@ -5,9 +5,9 @@
         .module('pipelinedashboardApp')
         .controller('RepoDetailController', RepoDetailController);
 
-    RepoDetailController.$inject = ['$scope', '$rootScope', '$stateParams', 'previousState', 'entity', 'Repo'];
+    RepoDetailController.$inject = ['$scope', '$rootScope', '$stateParams', 'previousState', 'entity', 'Repo', 'Project'];
 
-    function RepoDetailController($scope, $rootScope, $stateParams, previousState, entity, Repo) {
+    function RepoDetailController($scope, $rootScope, $stateParams, previousState, entity, Repo, Project) {
         var vm = this;
 
         vm.repo = entity;

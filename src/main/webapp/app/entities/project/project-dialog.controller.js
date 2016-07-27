@@ -5,9 +5,9 @@
         .module('pipelinedashboardApp')
         .controller('ProjectDialogController', ProjectDialogController);
 
-    ProjectDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'Project'];
+    ProjectDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'Project', 'Repo'];
 
-    function ProjectDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, Project) {
+    function ProjectDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, Project, Repo) {
         var vm = this;
 
         vm.project = entity;
@@ -15,6 +15,7 @@
         vm.datePickerOpenStatus = {};
         vm.openCalendar = openCalendar;
         vm.save = save;
+        vm.repos = Repo.query();
 
         $timeout(function (){
             angular.element('.form-group:eq(1)>input').focus();

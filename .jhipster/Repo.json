@@ -1,5 +1,13 @@
 {
-    "relationships": [],
+    "relationships": [
+        {
+            "relationshipName": "project",
+            "otherEntityName": "project",
+            "relationshipType": "many-to-many",
+            "ownerSide": false,
+            "otherEntityRelationshipName": "repos"
+        }
+    ],
     "fields": [
         {
             "fieldName": "owner",

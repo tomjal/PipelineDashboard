@@ -46,5 +46,16 @@
         <dropDefaultValue tableName="project" columnName="created_on" columnDataType="datetime"/>
         <dropDefaultValue tableName="project" columnName="updated_on" columnDataType="datetime"/>
         
+        <createTable tableName="project_repos">
+            <column name="repos_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="projects_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addPrimaryKey columnNames="projects_id, repos_id" tableName="project_repos"/>
+        
     </changeSet>
 </databaseChangeLog>

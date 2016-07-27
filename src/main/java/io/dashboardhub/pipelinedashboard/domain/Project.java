@@ -8,6 +8,8 @@ import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.io.Serializable;
 import java.time.ZonedDateTime;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.Objects;
 
 /**
@@ -43,6 +45,13 @@ public class Project implements Serializable {
     @Size(max = 24)
     @Column(name = "twitter", length = 24)
     private String twitter;
+
+    @ManyToMany
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    @JoinTable(name = "project_repos",
+               joinColumns = @JoinColumn(name="projects_id", referencedColumnName="ID"),
+               inverseJoinColumns = @JoinColumn(name="repos_id", referencedColumnName="ID"))
+    private Set<Repo> repos = new HashSet<>();
 
     public Long getId() {
         return id;
@@ -90,6 +99,14 @@ public class Project implements Serializable {
 
     public void setTwitter(String twitter) {
         this.twitter = twitter;
+    }
+
+    public Set<Repo> getRepos() {
+        return repos;
+    }
+
+    public void setRepos(Set<Repo> repos) {
+        this.repos = repos;
     }
 
     @Override

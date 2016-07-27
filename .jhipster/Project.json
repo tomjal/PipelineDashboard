@@ -1,5 +1,13 @@
 {
-    "relationships": [],
+    "relationships": [
+        {
+            "relationshipName": "repos",
+            "otherEntityName": "repo",
+            "relationshipType": "many-to-many",
+            "otherEntityField": "name",
+            "ownerSide": true
+        }
+    ],
     "fields": [
         {
             "fieldName": "name",

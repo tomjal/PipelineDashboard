@@ -1,5 +1,6 @@
 package io.dashboardhub.pipelinedashboard.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.springframework.data.elasticsearch.annotations.Document;
@@ -8,6 +9,8 @@ import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.io.Serializable;
 import java.time.ZonedDateTime;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.Objects;
 
 /**
@@ -40,6 +43,11 @@ public class Repo implements Serializable {
 
     @Column(name = "updated_on")
     private ZonedDateTime updatedOn;
+
+    @ManyToMany(mappedBy = "repos")
+    @JsonIgnore
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    private Set<Project> projects = new HashSet<>();
 
     public Long getId() {
         return id;
@@ -79,6 +87,14 @@ public class Repo implements Serializable {
 
     public void setUpdatedOn(ZonedDateTime updatedOn) {
         this.updatedOn = updatedOn;
+    }
+
+    public Set<Project> getProjects() {
+        return projects;
+    }
+
+    public void setProjects(Set<Project> projects) {
+        this.projects = projects;
     }
 
     @Override

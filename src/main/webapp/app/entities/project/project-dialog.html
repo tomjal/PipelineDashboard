@@ -78,6 +78,10 @@
             </div>
         </div>
 
+        <div class="form-group">
+            <label for="field_repos">Repos</label>
+            <select class="form-control" id="field_repos" multiple name="repos" ng-model="vm.project.repos" ng-options="repo as repo.name for repo in vm.repos track by repo.id"></select>
+        </div>
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
