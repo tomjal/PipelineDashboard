@@ -1,6 +1,7 @@
 package io.dashboardhub.pipelinedashboard.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.*;
+import io.dashboardhub.pipelinedashboard.domain.util.UUIDGenerator;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.springframework.data.elasticsearch.annotations.Document;
@@ -28,6 +29,9 @@ public class Project implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @Column(name = "uuid", length = 64, nullable = false)
+    private String uuid = new UUIDGenerator().generate();
+
     @NotNull
     @Size(min = 5, max = 32)
     @Column(name = "name", length = 32, nullable = false)
@@ -37,16 +41,19 @@ public class Project implements Serializable {
     @Column(name = "description", length = 512)
     private String description;
 
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     @Column(name = "created_on")
     private ZonedDateTime createdOn;
 
     @Column(name = "is_private")
-    private Boolean isPrivate;
+    private Boolean isPrivate = false;
 
-    @OneToMany(mappedBy = "project", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "project") // , fetch = FetchType.EAGER
 //    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+//    @JsonBackReference
     private Set<Repo> repos = new HashSet<>();
 
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     @OneToOne
     @JoinColumn
     private User user;
@@ -57,6 +64,14 @@ public class Project implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getUuid() {
+        return uuid;
+    }
+
+    public void setUuid(String uuid) {
+        this.uuid = uuid;
     }
 
     public String getName() {
@@ -83,11 +98,11 @@ public class Project implements Serializable {
         this.createdOn = createdOn;
     }
 
-    public Boolean isIsPrivate() {
+    public Boolean isPrivate() {
         return isPrivate;
     }
 
-    public void setIsPrivate(Boolean isPrivate) {
+    public void setPrivate(Boolean isPrivate) {
         this.isPrivate = isPrivate;
     }
 

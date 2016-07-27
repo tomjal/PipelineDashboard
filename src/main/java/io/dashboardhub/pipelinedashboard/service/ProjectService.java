@@ -33,7 +33,7 @@ public interface ProjectService {
      *  @param pageable the pagination information
      *  @return the list of entities
      */
-    Page<Project> findAllByCurrentUser(Pageable pageable);
+    List<Project> findAllByCurrentUser(Pageable pageable);
 
     /**
      *  Get the "id" project.

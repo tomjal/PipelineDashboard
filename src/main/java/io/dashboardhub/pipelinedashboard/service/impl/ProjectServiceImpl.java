@@ -14,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
+import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
@@ -46,9 +47,17 @@ public class ProjectServiceImpl implements ProjectService {
      */
     public Project save(Project project) {
         if (project.getId() != null) {
+            Project foundProject = findOne(project.getId());
+            project.setCreatedOn(foundProject.getCreatedOn());
+            project.setUser(foundProject.getUser());
             if (!project.getUser().getId().equals(userService.getUserWithAuthorities().getId())) {
                 throw new AccessDeniedException("This is not your Project to edit");
             }
+        }
+
+        if (project.getId() == null) {
+            project.setCreatedOn(ZonedDateTime.now());
+            project.setUser(userService.getUserWithAuthorities());
         }
 
         project.setUser(userService.getUserWithAuthorities());
@@ -78,9 +87,9 @@ public class ProjectServiceImpl implements ProjectService {
      *  @return the list of entities
      */
     @Transactional(readOnly = true)
-    public Page<Project> findAllByCurrentUser(Pageable pageable) {
+    public List<Project> findAllByCurrentUser(Pageable pageable) {
         log.debug("Request to get all User's Projects");
-        Page<Project> result = projectRepository.findAllByUser(userService.getUserWithAuthorities(), pageable);
+        List<Project> result = projectRepository.findAllByUser(userService.getUserWithAuthorities().getId());
         return result;
     }
 

@@ -97,7 +97,7 @@ public class ProjectResourceIntTest {
         project.setName(DEFAULT_NAME);
         project.setDescription(DEFAULT_DESCRIPTION);
         project.setCreatedOn(DEFAULT_CREATED_ON);
-        project.setIsPrivate(DEFAULT_IS_PRIVATE);
+        project.setPrivate(DEFAULT_IS_PRIVATE);
     }
 
     @Test
@@ -119,7 +119,7 @@ public class ProjectResourceIntTest {
         assertThat(testProject.getName()).isEqualTo(DEFAULT_NAME);
         assertThat(testProject.getDescription()).isEqualTo(DEFAULT_DESCRIPTION);
         assertThat(testProject.getCreatedOn()).isEqualTo(DEFAULT_CREATED_ON);
-        assertThat(testProject.isIsPrivate()).isEqualTo(DEFAULT_IS_PRIVATE);
+        assertThat(testProject.isPrivate()).isEqualTo(DEFAULT_IS_PRIVATE);
 
         // Validate the Project in ElasticSearch
         Project projectEs = projectSearchRepository.findOne(testProject.getId());
@@ -200,7 +200,7 @@ public class ProjectResourceIntTest {
         updatedProject.setName(UPDATED_NAME);
         updatedProject.setDescription(UPDATED_DESCRIPTION);
         updatedProject.setCreatedOn(UPDATED_CREATED_ON);
-        updatedProject.setIsPrivate(UPDATED_IS_PRIVATE);
+        updatedProject.setPrivate(UPDATED_IS_PRIVATE);
 
         restProjectMockMvc.perform(put("/api/projects")
                 .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -214,7 +214,7 @@ public class ProjectResourceIntTest {
         assertThat(testProject.getName()).isEqualTo(UPDATED_NAME);
         assertThat(testProject.getDescription()).isEqualTo(UPDATED_DESCRIPTION);
         assertThat(testProject.getCreatedOn()).isEqualTo(UPDATED_CREATED_ON);
-        assertThat(testProject.isIsPrivate()).isEqualTo(UPDATED_IS_PRIVATE);
+        assertThat(testProject.isPrivate()).isEqualTo(UPDATED_IS_PRIVATE);
 
         // Validate the Project in ElasticSearch
         Project projectEs = projectSearchRepository.findOne(testProject.getId());

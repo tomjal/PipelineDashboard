@@ -1,7 +1,7 @@
 package io.dashboardhub.pipelinedashboard.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.*;
+import io.dashboardhub.pipelinedashboard.domain.util.UUIDGenerator;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.springframework.data.elasticsearch.annotations.Document;
@@ -27,7 +27,11 @@ public class Repo implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @Column(name = "uuid", length = 64, nullable = false)
+    private String uuid = new UUIDGenerator().generate();
+
     @Column(name = "created_on")
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private ZonedDateTime createdOn;
 
     @NotNull
@@ -42,7 +46,7 @@ public class Repo implements Serializable {
 
     @ManyToOne
     @NotNull
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+//    @JsonManagedReference
     private Project project;
 
     public Long getId() {
@@ -51,6 +55,14 @@ public class Repo implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getUuid() {
+        return uuid;
+    }
+
+    public void setUuid(String uuid) {
+        this.uuid = uuid;
     }
 
     public ZonedDateTime getCreatedOn() {

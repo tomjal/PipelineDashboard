@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
+import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
@@ -43,11 +44,18 @@ public class RepoServiceImpl implements RepoService{
      * @return the persisted entity
      */
     public Repo save(Repo repo) {
-        Repo foundRepo = findOne(repo.getId());
-        if (foundRepo != null) {
-            if (!foundRepo.getProject().getUser().getId().equals(userService.getUserWithAuthorities().getId())) {
-                throw new AccessDeniedException("This is not your Repo to edit");
+        if (repo.getId() != null) {
+            Repo foundRepo = findOne(repo.getId());
+            if (foundRepo != null) {
+                repo.setProject(foundRepo.getProject());
+                if (!foundRepo.getProject().getUser().getId().equals(userService.getUserWithAuthorities().getId())) {
+                    throw new AccessDeniedException("This is not your Repo to edit");
+                }
             }
+        }
+
+        if (repo.getId() == null) {
+            repo.setCreatedOn(ZonedDateTime.now());
         }
 
         log.debug("Request to save Repo : {}", repo);

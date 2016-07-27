@@ -6,6 +6,9 @@ import io.dashboardhub.pipelinedashboard.domain.User;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.*;
 import org.springframework.data.domain.Page;
+import org.springframework.data.repository.query.Param;
+
+import java.util.List;
 
 
 /**
@@ -14,5 +17,6 @@ import org.springframework.data.domain.Page;
 @SuppressWarnings("unused")
 public interface ProjectRepository extends JpaRepository<Project,Long> {
 
-    Page<Project> findAllByUser(User user, Pageable pageable);
+    @Query("SELECT p FROM Project p LEFT JOIN p.repos r JOIN p.user u WHERE u.id = :userId")
+    List<Project> findAllByUser(@Param("userId") Long userId);
 }

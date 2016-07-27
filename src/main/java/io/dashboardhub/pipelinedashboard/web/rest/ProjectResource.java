@@ -95,12 +95,12 @@ public class ProjectResource {
         method = RequestMethod.GET,
         produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
-    public ResponseEntity<List<Project>> getAllProjects(Pageable pageable)
+    public List<Project> getAllProjects(Pageable pageable)
         throws URISyntaxException {
         log.debug("REST request to get a page of Projects");
-        Page<Project> page = projectService.findAllByCurrentUser(pageable);
-        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/projects");
-        return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
+        List<Project> page = projectService.findAllByCurrentUser(pageable);
+//        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/projects");
+        return page;
     }
 
     /**
