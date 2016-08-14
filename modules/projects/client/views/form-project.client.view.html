@@ -1,0 +1,48 @@
+<section>
+  <div class="page-header">
+    <h1>{{vm.project._id ? 'Edit Project' : 'New Project'}}</h1>
+  </div>
+  <div class="col-md-12">
+    <form name="vm.form.projectForm" class="form-horizontal" ng-submit="vm.save(vm.form.projectForm.$valid)" novalidate>
+      <fieldset>
+        <div class="form-group" show-errors>
+          <label class="control-label" for="name">Name</label>
+          <input name="name" type="text" ng-model="vm.project.name" id="name" class="form-control" placeholder="Name" required>
+          <div ng-messages="vm.form.projectForm.name.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Project name is required.</p>
+          </div>
+        </div>
+        <div class="form-group" show-errors>
+          <label class="control-label" for="description">Description</label>
+          <input name="description" type="text" ng-model="vm.project.description" id="description" class="form-control" placeholder="Description" required>
+          <div ng-messages="vm.form.projectForm.description.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Project description is required.</p>
+          </div>
+        </div>
+
+        <h3>Repositories
+          <button type="button" class="btn btn-primary" ng-click="vm.addRepository()">Add</button>
+        </h3>
+
+        <div class="row" data-ng-repeat="repository in vm.project.repositories">
+            <div class="input-group">
+              <span class="input-group-addon" id="basic-addon1">https://github.com/</span>
+              <input type="text" class="form-control" placeholder="Owner/Repository (eg. DashboardHub/PipelineDashboard)"
+                id="repositories[]" name="repositories[]" ng-model="repository.url">
+              <span class="input-group-btn">
+                <button class="btn btn-danger" type="button" ng-click="vm.removeRepository(repository.url)">Delete</button>
+              </span>
+            </div><!-- /input-group -->
+        </div><!-- /.row -->
+
+        <div class="clearfix"></div>
+        <div class="form-group">
+          <button type="submit" class="btn btn-default">{{vm.project._id ? 'Update' : 'Create'}}</button>
+        </div>
+        <div ng-show="vm.error" class="text-danger">
+          <strong ng-bind="vm.error"></strong>
+        </div>
+      </fieldset>
+    </form>
+  </div>
+</section>
