@@ -58,7 +58,7 @@
         vm.project.repositories = [];
       }
       var newItemNo = vm.project.repositories.length + 1;
-      vm.project.repositories.push({'id': newItemNo, 'full_name': ''});
+      vm.project.repositories.push({ 'id': newItemNo, 'full_name': '' });
     }
 
     // remove repository
