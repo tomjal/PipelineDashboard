@@ -9,13 +9,6 @@ var path = require('path'),
   errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller')),
   _ = require('lodash');
 
-var NodeCache = require('node-cache');
-var myCache = new NodeCache();
-
-var GitHubApi = require('github');
-
-var github = new GitHubApi();
-
 /**
  * Create a Project
  */
@@ -44,25 +37,6 @@ exports.read = function (req, res) {
   // Add a custom field to the Article, for determining if the current User is the "owner".
   // NOTE: This field is NOT persisted to the database, since it doesn't exist in the Article model.
   project.isCurrentUserOwner = req.user && project.user && project.user._id.toString() === req.user._id.toString() ? true : false;
-
-  // @TODO: move to service
-  project.repositories.forEach(function (item, index) {
-    myCache.get('github/' + item.full_name, function (err, value) {
-      if (!err) {
-        if (value === undefined) {
-          github.repos.get({
-            user: item.full_name.split('/')[0],
-            repo: item.full_name.split('/')[1]
-          }, function (err, res) {
-            myCache.set('github/' + item.full_name, res);
-            project.repositories[index] = res;
-          });
-        } else {
-          project.repositories[index] = value;
-        }
-      }
-    });
-  });
 
   res.jsonp(project);
 };
