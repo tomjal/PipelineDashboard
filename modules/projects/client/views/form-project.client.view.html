@@ -28,9 +28,9 @@
             <div class="input-group">
               <span class="input-group-addon" id="basic-addon1">https://github.com/</span>
               <input type="text" class="form-control" placeholder="Owner/Repository (eg. DashboardHub/PipelineDashboard)"
-                id="repositories[]" name="repositories[]" ng-model="repository.url">
+                id="repositories[]" name="repositories[]" ng-model="repository.full_name">
               <span class="input-group-btn">
-                <button class="btn btn-danger" type="button" ng-click="vm.removeRepository(repository.url)">Delete</button>
+                <button class="btn btn-danger" type="button" ng-click="vm.removeRepository(repository.full_name)">Delete</button>
               </span>
             </div><!-- /input-group -->
         </div><!-- /.row -->

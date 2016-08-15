@@ -24,7 +24,7 @@ var ProjectSchema = new Schema({
   },
   repositories: [
     {
-      url: String,
+      full_name: String,
       date: {
         type: Date,
         default: Date.now

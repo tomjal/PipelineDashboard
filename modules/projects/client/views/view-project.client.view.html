@@ -1,6 +1,6 @@
 <section>
   <div class="page-header">
-    <h1 data-ng-bind="vm.project.name"></h1>
+    <h1><span data-ng-bind="vm.project.name"></span><span class="badge">{{ vm.project.repositories.length }}</span></h1>
   </div>
   <div class="pull-right"
        data-ng-show="vm.project.isCurrentUserOwner">
@@ -13,9 +13,27 @@
     </a>
   </div>
   <p data-ng-bind="vm.project.description"></p>
-  <ul>
-    <li data-ng-repeat="repository in vm.project.repositories">{{ repository.url }}</li>
-  </ul>
+  <div class="panel panel-default" data-ng-repeat="repository in vm.project.repositories">
+    <div class="panel-heading">
+      <h3 class="panel-title"><a href="{{ repository.html_url }}">{{ repository.full_name }}</a>
+        <span class="badge">S {{ repository.stargazers_count }}</span>
+        <span class="badge">F {{ repository.forks_count }}</span>
+        <span class="badge">W {{ repository.subscribers_count }}</span>
+        <span class="badge">B {{ repository.default_branch }}</span>
+        <span class="badge">W {{ repository.homepage }}</span>
+        <span class="badge">L {{ repository.language }}</span>
+        <span class="badge">I {{ repository.open_issues_count }}</span>
+      </h3>
+    </div>
+    <div class="panel-body">
+      <div class="col-md-2"><img src="{{ repository.owner.avatar_url }}"/></div>
+      <div class="col-md-10">
+        <p>{{ repository.description }}</p>
+        <p>Created on {{ repository.created_at }}, Updated on {{ repository.updated_at }}</p>
+      </div>
+    </div>
+  </div>
+
   <small>
     <em class="text-muted">
       Posted on

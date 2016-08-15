@@ -8,7 +8,7 @@
 
   ProjectsController.$inject = ['$scope', '$state', 'Authentication', 'projectResolve'];
 
-  function ProjectsController ($scope, $state, Authentication, project) {
+  function ProjectsController($scope, $state, Authentication, project) {
     var vm = this;
 
     vm.authentication = Authentication;
@@ -54,15 +54,18 @@
 
     // add repository
     function addRepository() {
-      var newItemNo = vm.project.repositories.length+1;
-      vm.project.repositories.push({'id':newItemNo, 'url':''});
-    };
+      if (vm.project.repositories === undefined) {
+        vm.project.repositories = [];
+      }
+      var newItemNo = vm.project.repositories.length + 1;
+      vm.project.repositories.push({'id': newItemNo, 'full_name': ''});
+    }
 
     // remove repository
-    function removeRepository(url) {
-      vm.project.repositories = vm.project.repositories.filter(function(item) {
-        return item.url != url;
+    function removeRepository(full_name) {
+      vm.project.repositories = vm.project.repositories.filter(function (item) {
+        return item.full_name !== full_name;
       });
-    };
+    }
   }
 })();
