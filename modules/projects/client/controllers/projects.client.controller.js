@@ -6,19 +6,21 @@
     .module('projects')
     .controller('ProjectsController', ProjectsController);
 
-  ProjectsController.$inject = ['$scope', '$state', 'Authentication', 'projectResolve'];
+  ProjectsController.$inject = ['$scope', '$state', 'Authentication', 'projectResolve', '$http'];
 
-  function ProjectsController($scope, $state, Authentication, project) {
+  function ProjectsController($scope, $state, Authentication, project, $http) {
     var vm = this;
 
     vm.authentication = Authentication;
     vm.project = project;
+    vm.repositories = [];
     vm.error = null;
     vm.form = {};
     vm.remove = remove;
     vm.save = save;
     vm.addRepository = addRepository;
     vm.removeRepository = removeRepository;
+    vm.getGitHub = getGitHub;
 
     // Remove existing Project
     function remove() {
@@ -65,6 +67,16 @@
     function removeRepository(full_name) {
       vm.project.repositories = vm.project.repositories.filter(function (item) {
         return item.full_name !== full_name;
+      });
+    }
+
+    // get GitHub repository info
+    function getGitHub(full_name) {
+      $http({
+        method: 'GET',
+        url: '/api/github/' + full_name
+      }).then(function successCallback(response) {
+        vm.repositories[full_name] = response.data;
       });
     }
   }
