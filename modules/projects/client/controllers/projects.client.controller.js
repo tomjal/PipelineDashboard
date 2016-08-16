@@ -13,7 +13,8 @@
 
     vm.authentication = Authentication;
     vm.project = project;
-    vm.repositories = [];
+    vm.github = [];
+    vm.travisci = [];
     vm.error = null;
     vm.form = {};
     vm.remove = remove;
@@ -21,6 +22,7 @@
     vm.addRepository = addRepository;
     vm.removeRepository = removeRepository;
     vm.getGitHub = getGitHub;
+    vm.getTravisCI = getTravisCI;
 
     // Remove existing Project
     function remove() {
@@ -76,8 +78,19 @@
         method: 'GET',
         url: '/api/github/' + full_name
       }).then(function successCallback(response) {
-        vm.repositories[full_name] = response.data;
+        vm.github[full_name] = response.data;
       });
     }
+
+    // get TravisCI repository info
+    function getTravisCI(full_name) {
+      $http({
+        method: 'GET',
+        url: '/api/travisci/' + full_name
+      }).then(function successCallback(response) {
+        vm.travisci[full_name] = response.data;
+      });
+    }
+
   }
 })();

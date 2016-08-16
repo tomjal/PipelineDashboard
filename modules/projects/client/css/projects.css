@@ -1,3 +1,7 @@
+div.panel span.label {
+    margin:2px;
+}
+
 div.panel-body img {
-    width:100px;
+    width:60px;
 }

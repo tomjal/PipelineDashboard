@@ -1,50 +1,109 @@
 <section>
-  <div class="page-header">
-    <h1><span data-ng-bind="vm.project.name"></span><span class="badge">{{ vm.project.repositories.length }}</span></h1>
-  </div>
-  <div class="pull-right"
-       data-ng-show="vm.project.isCurrentUserOwner">
-    <a class="btn btn-primary"
-       data-ui-sref="projects.edit({ projectId: vm.project._id })">
-      <i class="glyphicon glyphicon-edit"></i>
-    </a>
-    <a class="btn btn-primary" data-ng-click="vm.remove()">
-      <i class="glyphicon glyphicon-trash"></i>
-    </a>
-  </div>
-  <p data-ng-bind="vm.project.description"></p>
-  <div class="panel panel-default" data-ng-repeat="repository in vm.project.repositories" data-ng-init="vm.getGitHub(repository.full_name)">
-    <div class="panel-heading">
-      <h3 class="panel-title"><a href="{{ vm.repositories[repository.full_name].html_url }}">{{ vm.repositories[repository.full_name].full_name }}</a>
-        <span class="badge">S {{ vm.repositories[repository.full_name].stargazers_count }}</span>
-        <span class="badge">F {{ vm.repositories[repository.full_name].forks_count }}</span>
-        <span class="badge">W {{ vm.repositories[repository.full_name].subscribers_count }}</span>
-        <span class="badge">B {{ vm.repositories[repository.full_name].default_branch }}</span>
-        <span class="badge">W {{ vm.repositories[repository.full_name].homepage }}</span>
-        <span class="badge">L {{ vm.repositories[repository.full_name].language }}</span>
-        <span class="badge">I {{ vm.repositories[repository.full_name].open_issues_count }}</span>
-      </h3>
-    </div>
-    <div class="panel-body">
-      <div class="col-md-2">
-        <img src="{{ vm.repositories[repository.full_name].owner.avatar_url }}"/>
+    <div class="row">
+      <div class="page-header">
+        <h1><span data-ng-bind="vm.project.name"></span><span class="badge">{{ vm.project.repositories.length }}</span></h1>
       </div>
-      <div class="col-md-10">
-        <p>{{ vm.repositories[repository.full_name].description }}</p>
-        <p>Created on {{ vm.repositories[repository.full_name].created_at }}, Updated on {{ vm.repositories[repository.full_name].updated_at }}</p>
+      <div class="pull-right"
+           data-ng-show="vm.project.isCurrentUserOwner">
+        <a class="btn btn-primary"
+           data-ui-sref="projects.edit({ projectId: vm.project._id })">
+          <i class="glyphicon glyphicon-edit"></i>
+        </a>
+        <a class="btn btn-primary" data-ng-click="vm.remove()">
+          <i class="glyphicon glyphicon-trash"></i>
+        </a>
       </div>
     </div>
-  </div>
+    <div class="row">
+      <p data-ng-bind="vm.project.description"></p>
+      <div class="panel panel-default" data-ng-repeat="repository in vm.project.repositories"
+           data-ng-init="vm.getGitHub(repository.full_name)"
+           ng-class="vm.travisci[repository.full_name].last_build_status ? 'alert-success' : 'alert-danger'">
+        <div class="panel-heading" data-ng-init="vm.getTravisCI(repository.full_name)">
+            <div class="pull-right">
+                <span class="label label-success">
+                    <i class="fa fa-eye" aria-hidden="true"></i> {{ vm.github[repository.full_name].subscribers_count }}
+                  </span>
+                <span class="label label-success">
+                    <i class="fa fa-star" aria-hidden="true"></i> {{ vm.github[repository.full_name].stargazers_count }}
+                  </span>
+                <span class="label label-info">
+                    <i class="fa fa-code-fork" aria-hidden="true"></i> {{ vm.github[repository.full_name].forks_count }}
+                </span>
+            </div>
+          <h3 class="panel-title">
+              <a href="https://github.com/{{ repository.full_name }}">
+                  <i class="fa fa-github-square" aria-hidden="true"></i>
+              </a>
+              <a href="https://travis-ci.org/{{ repository.full_name }}">
+                  <i class="fa fa-rocket" aria-hidden="true"></i>
+              </a>
+                {{ repository.full_name }}
 
-  <small>
-    <em class="text-muted">
-      Posted on
-      <span data-ng-bind="vm.project.created | date:'mediumDate'"></span>
-      by
-      <span data-ng-if="vm.project.user"
-            data-ng-bind="vm.project.user.displayName"></span>
-      <span data-ng-if="!vm.project.user">Deleted User</span>
-    </em>
-  </small>
-  <p class="lead" data-ng-bind="vm.project.content"></p>
+              <a href="{{ vm.github[repository.full_name].homepage }}">
+                  <i class="fa fa-external-link-square" aria-hidden="true"></i>
+              </a>
+          </h3>
+        </div>
+        <div class="panel-body">
+          <div class="col-md-1 text-center">
+            <img src="{{ vm.github[repository.full_name].owner.avatar_url }}"/>
+          </div>
+          <div class="col-md-4">
+            <p>{{ vm.github[repository.full_name].description }}</p>
+          </div>
+          <div class="col-md-3">
+              <ul class="list-group">
+                  <li class="list-group-item">
+                      <span class="badge">{{ vm.github[repository.full_name].open_issues_count }}</span>
+                      <i class="fa fa-book" aria-hidden="true"></i> Issues
+                  </li>
+              </ul>
+          </div>
+          <div class="col-md-4">
+              <ul class="list-group">
+                  <li class="list-group-item">
+                      <span class="badge">{{ vm.travisci[repository.full_name].last_build_finished_at | date:'medium' }}</span>
+                      <i class="fa fa-clock-o" aria-hidden="true"></i> Built on
+                  </li>
+                  <li class="list-group-item">
+                      <span class="badge">{{ vm.travisci[repository.full_name].last_build_duration | number }}s</span>
+                      <i class="fa fa-clock-o" aria-hidden="true"></i> Build duration
+                  </li>
+              </ul>
+          </div>
+        </div>
+        <div class="panel-footer">
+            <div class="pull-right">
+                <span class="label label-default" title="Size">
+                    <i class="fa fa-hdd-o" aria-hidden="true"></i>
+                    {{ vm.github[repository.full_name].size | number }}
+                </span>
+                <span class="label label-default" title="Default branch">
+                    <i class="fa fa-code" aria-hidden="true"></i>
+                    {{ vm.github[repository.full_name].default_branch }}
+                </span>
+                <span class="label label-default" title="Main language used">
+                    <i class="fa fa-language" aria-hidden="true"></i>
+                    {{ vm.github[repository.full_name].language }}
+                </span>
+            </div>
+
+            Repository created on {{ vm.github[repository.full_name].created_at | date:'mediumDate' }}
+            and last updated on {{ vm.github[repository.full_name].updated_at | date:'mediumDate' }}
+        </div>
+      </div>
+
+      <small>
+        <em class="text-muted">
+          Project created on
+          <span data-ng-bind="vm.project.created | date:'mediumDate'"></span>
+          by
+          <span data-ng-if="vm.project.user"
+                data-ng-bind="vm.project.user.displayName"></span>
+          <span data-ng-if="!vm.project.user">Deleted User</span>
+        </em>
+      </small>
+      <p class="lead" data-ng-bind="vm.project.content"></p>
+    </div>
 </section>
