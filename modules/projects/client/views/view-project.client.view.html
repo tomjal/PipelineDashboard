@@ -22,13 +22,13 @@
         <div class="panel-heading" data-ng-init="vm.getTravisCI(repository.full_name)">
             <div class="pull-right">
                 <span class="label label-success">
-                    <i class="fa fa-eye" aria-hidden="true"></i> {{ vm.github[repository.full_name].subscribers_count }}
+                    <i class="fa fa-eye" aria-hidden="true"></i> {{ vm.github[repository.full_name].subscribers_count | number }}
                   </span>
                 <span class="label label-success">
-                    <i class="fa fa-star" aria-hidden="true"></i> {{ vm.github[repository.full_name].stargazers_count }}
+                    <i class="fa fa-star" aria-hidden="true"></i> {{ vm.github[repository.full_name].stargazers_count | number }}
                   </span>
                 <span class="label label-info">
-                    <i class="fa fa-code-fork" aria-hidden="true"></i> {{ vm.github[repository.full_name].forks_count }}
+                    <i class="fa fa-code-fork" aria-hidden="true"></i> {{ vm.github[repository.full_name].forks_count | number }}
                 </span>
             </div>
           <h3 class="panel-title">
@@ -64,7 +64,7 @@
               <ul class="list-group">
                   <li class="list-group-item">
                       <span class="badge">{{ vm.travisci[repository.full_name].last_build_finished_at | date:'medium' }}</span>
-                      <i class="fa fa-clock-o" aria-hidden="true"></i> Built on
+                      <i class="fa fa-calendar" aria-hidden="true"></i> Built on
                   </li>
                   <li class="list-group-item">
                       <span class="badge">{{ vm.travisci[repository.full_name].last_build_duration | number }}s</span>
