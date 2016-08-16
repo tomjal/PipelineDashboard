@@ -33,10 +33,3 @@ exports.read = function (req, res) {
     });
 
 };
-
-/**
- * GitHub middleware
- */
-exports.githubByID = function (req, res, next, id) {
-
-};

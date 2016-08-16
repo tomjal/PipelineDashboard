@@ -9,7 +9,7 @@ var acl = require('acl');
 acl = new acl(new acl.memoryBackend());
 
 /**
- * Invoke Projects Permissions
+ * Invoke GitHub Permissions
  */
 exports.invokeRolesPolicies = function () {
   acl.allow([{

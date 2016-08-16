@@ -11,6 +11,4 @@ module.exports = function(app) {
   app.route('/api/github/:user/:repo').all(githubPolicy.isAllowed)
     .get(github.read);
 
-  // Finish by binding the Project middleware
-  // app.param('githubId', github.githubByID);
 };
