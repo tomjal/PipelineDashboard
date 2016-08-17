@@ -6,9 +6,9 @@
     .module('projects')
     .controller('ProjectsController', ProjectsController);
 
-  ProjectsController.$inject = ['$scope', '$state', 'Authentication', 'projectResolve', '$http'];
+  ProjectsController.$inject = ['$scope', '$state', 'Authentication', 'projectResolve', '$http', '$interval'];
 
-  function ProjectsController($scope, $state, Authentication, project, $http) {
+  function ProjectsController($scope, $state, Authentication, project, $http, $interval) {
     var vm = this;
 
     vm.authentication = Authentication;
@@ -23,6 +23,33 @@
     vm.removeRepository = removeRepository;
     vm.getGitHub = getGitHub;
     vm.getTravisCI = getTravisCI;
+
+    var githubPromise = $interval(getAllGitHub, 60000);
+    var travisPromise = $interval(getAllTravis, 60000);
+
+    // Cancel interval on page changes
+    $scope.$on('$destroy', function(){
+      if (angular.isDefined(githubPromise)) {
+        $interval.cancel(githubPromise);
+        githubPromise = undefined;
+      }
+      if (angular.isDefined(travisPromise)) {
+        $interval.cancel(travisPromise);
+        travisPromise = undefined;
+      }
+    });
+
+    function getAllGitHub() {
+      angular.forEach(vm.project.repositories, function(value) {
+        getGitHub(value.full_name);
+      });
+    }
+
+    function getAllTravis() {
+      angular.forEach(vm.project.repositories, function(value) {
+        getTravisCI(value.full_name);
+      });
+    }
 
     // Remove existing Project
     function remove() {
