@@ -23,13 +23,12 @@ exports.read = function (req, res) {
 
   cachedRequest
     .get({
-      ttl: 60*60,
+      ttl: 3*60*1000, // milli seconds
       url: travisci + '/repos/' + req.params.user + '/' + req.params.repo,
       headers: {
         'User-Agent': 'PipelineDashboard'
       }
     }, function (error, response, body) {
-      console.log(body);
       res.jsonp(JSON.parse(body));
     });
 

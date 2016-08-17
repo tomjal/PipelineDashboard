@@ -23,7 +23,7 @@ exports.read = function (req, res) {
 
   cachedRequest
     .get({
-      ttl: 60*60,
+      ttl: 10*60*1000, // milli seconds
       url: github + '/repos/' + req.params.user + '/' + req.params.repo,
       headers: {
         'User-Agent': 'PipelineDashboard'
