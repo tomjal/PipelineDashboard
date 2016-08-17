@@ -89,6 +89,9 @@
                 </span>
             </div>
 
+            <span class="label label-info" title="Last pushed at" am-time-ago="vm.github[repository.full_name].pushed_at">
+                Pushed {{ vm.github[repository.full_name].pushed_at | date:'medium' }}
+            </span>
             Repository created on {{ vm.github[repository.full_name].created_at | date:'mediumDate' }}
             and last updated on {{ vm.github[repository.full_name].updated_at | date:'mediumDate' }}
         </div>
